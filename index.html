@@ -3,14 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Funding for Ansh</title>
+  <title>Daily Monster Funds for Ansh</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 min-h-screen flex items-center justify-center">
+<body class="bg-gradient-to-r from-green-700 via-gray-900 to-black min-h-screen flex items-center justify-center">
   <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md text-center">
-    <h1 class="text-3xl font-bold text-gray-800 mb-4">Support Ansh 💙</h1>
-    <p class="text-gray-600 mb-6">Every contribution counts. Thank you for your support!</p>
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Buy Ansh a Monster 🥤⚡</h1>
+    <p class="text-gray-600 mb-6">Fuel Ansh’s brain with daily Monster — keep me energized, one can at a time 😈</p>
     
+    <!-- Monster Can Images -->
+    <div class="flex justify-center gap-4 mb-6">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Monster_Energy_drink.jpg" class="w-20 rounded-lg shadow-md" alt="Monster Energy Can" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Monster_energy_drink_green.jpg" class="w-20 rounded-lg shadow-md" alt="Monster Energy Can" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Monster_Energy_Zero_Ultra.jpg" class="w-20 rounded-lg shadow-md" alt="Monster Energy Can" />
+    </div>
+
     <!-- QR Code -->
     <div class="flex justify-center mb-6">
       <img src="ansh.jpeg" alt="GPay QR Code" class="w-48 h-48 rounded-lg shadow-md border" />
@@ -22,29 +29,12 @@
         class="border rounded-lg px-3 py-2 w-full text-center" />
     </div>
 
-    <!-- Pay Buttons -->
-    <div class="flex flex-col gap-3 mt-4">
-      <!-- Google Pay -->
-      <a id="gpayBtn" 
-         href="upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=20&cu=INR"
-         class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl shadow-lg text-lg font-medium transition-all">
-         Pay with Google Pay 💙
-      </a>
-
-      <!-- PhonePe -->
-      <a id="phonepeBtn"
-         href="phonepe://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=20&cu=INR"
-         class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl shadow-lg text-lg font-medium transition-all">
-         Pay with PhonePe 💜
-      </a>
-
-      <!-- Paytm -->
-      <a id="paytmBtn"
-         href="paytmmp://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=20&cu=INR"
-         class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl shadow-lg text-lg font-medium transition-all">
-         Pay with Paytm 💳
-      </a>
-    </div>
+    <!-- Universal UPI Button -->
+    <a id="upiBtn" 
+       href="upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=20&cu=INR"
+       class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl shadow-lg text-lg font-medium transition-all">
+       Send ₹20 for Monster 💸
+    </a>
 
     <!-- Copy Button -->
     <div class="mt-4">
@@ -54,20 +44,17 @@
       </button>
     </div>
 
-    <p class="text-sm text-gray-500 mt-6">You can use Google Pay, PhonePe, Paytm, or any UPI app.</p>
+    <p class="text-sm text-gray-500 mt-6">Works with Google Pay, PhonePe, Paytm, or any UPI app.</p>
   </div>
 
   <script>
     const amountInput = document.getElementById("amount");
-    const gpayBtn = document.getElementById("gpayBtn");
-    const phonepeBtn = document.getElementById("phonepeBtn");
-    const paytmBtn = document.getElementById("paytmBtn");
+    const upiBtn = document.getElementById("upiBtn");
 
     amountInput.addEventListener("input", () => {
       const amount = amountInput.value || 20;
-      gpayBtn.href = `upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=${amount}&cu=INR`;
-      phonepeBtn.href = `phonepe://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=${amount}&cu=INR`;
-      paytmBtn.href = `paytmmp://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=${amount}&cu=INR`;
+      upiBtn.href = `upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=${amount}&cu=INR`;
+      upiBtn.textContent = `Send ₹${amount} for Monster 💸`;
     });
 
     function copyUPI() {
@@ -77,4 +64,3 @@
   </script>
 </body>
 </html>
-jj
