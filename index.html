@@ -9,7 +9,7 @@
 <body class="bg-gradient-to-r from-green-700 via-gray-900 to-black min-h-screen flex items-center justify-center">
   <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md text-center">
     <h1 class="text-3xl font-bold text-gray-800 mb-2"> Fund 💸 Ansh⚡</h1>
-    <p class="text-gray-600 mb-6">Help to keep me energized, one can at a time (Tuje teri maa kasam donate kar)</p>
+    <p class="text-gray-600 mb-6">Help to keep me energized, one can at a time ⚡</p>
     
     <!-- Monster Can Images -->
     <div class="flex justify-center gap-4 mb-6">
@@ -20,7 +20,7 @@
 
     <!-- QR Code -->
     <div class="flex justify-center mb-6">
-      <img src="ansh.jpeg" class="w-48 h-48 rounded-lg shadow-md border" />
+      <img src="ansh.jpeg" class="w-40 h-40 rounded-lg shadow-md border" />
     </div>
 
     <!-- Amount input -->
@@ -33,7 +33,7 @@
     <a id="upiBtn" 
        href="upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=20&cu=INR"
        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl shadow-lg text-lg font-medium transition-all inline-block">
-       Send ₹20 (can go higher) 💸
+       Send ₹20 💸
     </a>
 
     <!-- Copy Button -->
@@ -44,17 +44,41 @@
       </button>
     </div>
 
+    <!-- Progress Bar -->
+    <div class="mt-8 text-left">
+      <p class="text-sm text-gray-600 mb-2">Donation Progress</p>
+      <div class="w-full bg-gray-200 rounded-full h-4">
+        <div id="progressBar" class="bg-green-600 h-4 rounded-full" style="width: 0%"></div>
+      </div>
+      <p id="progressText" class="text-sm text-gray-700 mt-2">₹0 / ₹1000 goal</p>
+    </div>
+
     <p class="text-sm text-gray-500 mt-6">Works with Google Pay, PhonePe, Paytm, or any UPI app.</p>
   </div>
 
   <script>
     const amountInput = document.getElementById("amount");
     const upiBtn = document.getElementById("upiBtn");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+
+    const goal = 1000;  // goal amount in ₹
+    let donated = 0;    // total donations made (mock)
 
     amountInput.addEventListener("input", () => {
       const amount = amountInput.value || 20;
       upiBtn.href = `upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=${amount}&cu=INR`;
-      upiBtn.textContent = `Send ₹${amount} for Monster 💸`;
+      upiBtn.textContent = `Send ₹${amount} 💸`;
+    });
+
+    // When someone clicks pay button, update the bar (mock donation tracking)
+    upiBtn.addEventListener("click", () => {
+      const amount = parseInt(amountInput.value) || 20;
+      donated += amount;
+      if (donated > goal) donated = goal; // cap at goal
+      const percent = (donated / goal) * 100;
+      progressBar.style.width = percent + "%";
+      progressText.textContent = `₹${donated} / ₹${goal} goal`;
     });
 
     function copyUPI() {
