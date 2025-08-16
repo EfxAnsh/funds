@@ -22,12 +22,29 @@
         class="border rounded-lg px-3 py-2 w-full text-center" />
     </div>
 
-    <!-- Pay Now Button -->
-    <a id="payButton" 
-       href="upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=20&cu=INR" 
-       class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl shadow-lg text-lg font-medium transition-all">
-       Pay Now 💸
-    </a>
+    <!-- Pay Buttons -->
+    <div class="flex flex-col gap-3 mt-4">
+      <!-- Google Pay -->
+      <a id="gpayBtn" 
+         href="upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=20&cu=INR"
+         class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl shadow-lg text-lg font-medium transition-all">
+         Pay with Google Pay 💙
+      </a>
+
+      <!-- PhonePe -->
+      <a id="phonepeBtn"
+         href="phonepe://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=20&cu=INR"
+         class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl shadow-lg text-lg font-medium transition-all">
+         Pay with PhonePe 💜
+      </a>
+
+      <!-- Paytm -->
+      <a id="paytmBtn"
+         href="paytmmp://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=20&cu=INR"
+         class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl shadow-lg text-lg font-medium transition-all">
+         Pay with Paytm 💳
+      </a>
+    </div>
 
     <!-- Copy Button -->
     <div class="mt-4">
@@ -41,12 +58,16 @@
   </div>
 
   <script>
-    const payBtn = document.getElementById("payButton");
     const amountInput = document.getElementById("amount");
+    const gpayBtn = document.getElementById("gpayBtn");
+    const phonepeBtn = document.getElementById("phonepeBtn");
+    const paytmBtn = document.getElementById("paytmBtn");
 
     amountInput.addEventListener("input", () => {
       const amount = amountInput.value || 20;
-      payBtn.href = `upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=${amount}&cu=INR`;
+      gpayBtn.href = `upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=${amount}&cu=INR`;
+      phonepeBtn.href = `phonepe://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=${amount}&cu=INR`;
+      paytmBtn.href = `paytmmp://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=${amount}&cu=INR`;
     });
 
     function copyUPI() {
@@ -56,3 +77,4 @@
   </script>
 </body>
 </html>
+jj
