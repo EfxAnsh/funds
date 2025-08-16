@@ -33,7 +33,7 @@
     <a id="upiBtn" 
        href="upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=20&cu=INR"
        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl shadow-lg text-lg font-medium transition-all inline-block">
-       Send ₹20 for Monster 💸(jaada bhi doge toh bura nhi maanunga)
+       Send ₹20 for Monster 💸(jaada bhi doge toh bura nhi)
     </a>
 
     <!-- Copy Button -->
@@ -44,16 +44,15 @@
       </button>
     </div>
 
-    <!-- Donation Progress Bar -->
+    <!-- Fake Donation Progress Bar -->
     <div class="mt-8">
       <p class="text-gray-700 font-medium mb-2">Donation Progress</p>
       <div class="w-full bg-gray-200 rounded-full h-5 overflow-hidden">
-        <div id="progressBar" class="bg-green-600 h-5 text-xs text-white flex items-center justify-center transition-all duration-300"
-             style="width: 0%;">
-          0%
+        <div class="bg-green-600 h-5 text-xs text-white flex items-center justify-center"
+             style="width: 29%;">
+          29%
         </div>
       </div>
-      <p id="donationText" class="mt-2 text-sm text-gray-500"></p>
     </div>
 
     <p class="text-sm text-gray-500 mt-6">Works with Google Pay, PhonePe, Paytm, or any UPI app.</p>
@@ -62,19 +61,6 @@
   <script>
     const amountInput = document.getElementById("amount");
     const upiBtn = document.getElementById("upiBtn");
-    const progressBar = document.getElementById("progressBar");
-    const donationText = document.getElementById("donationText");
-
-    // Fake initial donation
-    let totalDonations = 69;
-    const goal = 500; // set donation goal
-
-    function updateProgress() {
-      let percent = Math.min((totalDonations / goal) * 100, 100);
-      progressBar.style.width = percent + "%";
-      progressBar.textContent = Math.floor(percent) + "%";
-      donationText.textContent = `₹${totalDonations} / ₹${goal}`;
-    }
 
     amountInput.addEventListener("input", () => {
       const amount = amountInput.value || 20;
@@ -82,19 +68,10 @@
       upiBtn.textContent = `Send ₹${amount} for Monster 💸`;
     });
 
-    upiBtn.addEventListener("click", () => {
-      const amount = parseInt(amountInput.value) || 20;
-      totalDonations += amount;
-      updateProgress();
-    });
-
     function copyUPI() {
       navigator.clipboard.writeText("anshumanrangarh1@oksbi");
       alert("UPI ID copied: anshumanrangarh1@oksbi");
     }
-
-    // Initialize with fake 69 donation
-    updateProgress();
   </script>
 </body>
 </html>
