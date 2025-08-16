@@ -9,13 +9,13 @@
 <body class="bg-gradient-to-r from-green-700 via-gray-900 to-black min-h-screen flex items-center justify-center">
   <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md text-center">
     <h1 class="text-3xl font-bold text-gray-800 mb-2"> Fund 💸 Ansh⚡</h1>
-    <p class="text-gray-600 mb-6">Help to keep me energized, one can at a time ⚡</p>
+    <p class="text-gray-600 mb-6">Help to keep me energized, one can at a time (Tuje teri maa kasam donate kar)</p>
     
     <!-- Monster Can Images -->
-    <div class="flex justify-center gap-4 mb-6">
-      <img src="s1.jpg" class="w-20 h-28 object-cover rounded-lg shadow-md" />
-      <img src="s2.jpg" class="w-20 h-28 object-cover rounded-lg shadow-md" />
-      <img src="s3.jpeg" class="w-20 h-28 object-cover rounded-lg shadow-md" />
+    <div class="flex justify-center gap-2 mb-6">
+      <img src="s1.jpg" class="w-16 h-16 object-cover rounded-lg" />
+      <img src="s2.jpg" class="w-16 h-16 object-cover rounded-lg" />
+      <img src="s3.jpeg" class="w-16 h-16 object-cover rounded-lg" />
     </div>
 
     <!-- QR Code -->
@@ -33,7 +33,7 @@
     <a id="upiBtn" 
        href="upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=20&cu=INR"
        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl shadow-lg text-lg font-medium transition-all inline-block">
-       Send ₹20 💸
+       Send ₹20 for Monster 💸
     </a>
 
     <!-- Copy Button -->
@@ -44,13 +44,16 @@
       </button>
     </div>
 
-    <!-- Progress Bar -->
-    <div class="mt-8 text-left">
-      <p class="text-sm text-gray-600 mb-2">Donation Progress</p>
-      <div class="w-full bg-gray-200 rounded-full h-4">
-        <div id="progressBar" class="bg-green-600 h-4 rounded-full" style="width: 0%"></div>
+    <!-- Donation Progress Bar -->
+    <div class="mt-8">
+      <p class="text-gray-700 font-medium mb-2">Donation Progress</p>
+      <div class="w-full bg-gray-200 rounded-full h-5 overflow-hidden">
+        <div id="progressBar" class="bg-green-600 h-5 text-xs text-white flex items-center justify-center transition-all duration-300"
+             style="width: 0%;">
+          0%
+        </div>
       </div>
-      <p id="progressText" class="text-sm text-gray-700 mt-2">₹0 / ₹1000 goal</p>
+      <p id="donationText" class="mt-2 text-sm text-gray-500"></p>
     </div>
 
     <p class="text-sm text-gray-500 mt-6">Works with Google Pay, PhonePe, Paytm, or any UPI app.</p>
@@ -60,31 +63,38 @@
     const amountInput = document.getElementById("amount");
     const upiBtn = document.getElementById("upiBtn");
     const progressBar = document.getElementById("progressBar");
-    const progressText = document.getElementById("progressText");
+    const donationText = document.getElementById("donationText");
 
-    const goal = 1000;  // goal amount in ₹
-    let donated = 69;    // total donations made (mock)
+    // Fake initial donation
+    let totalDonations = 69;
+    const goal = 500; // set donation goal
+
+    function updateProgress() {
+      let percent = Math.min((totalDonations / goal) * 100, 100);
+      progressBar.style.width = percent + "%";
+      progressBar.textContent = Math.floor(percent) + "%";
+      donationText.textContent = `₹${totalDonations} / ₹${goal}`;
+    }
 
     amountInput.addEventListener("input", () => {
       const amount = amountInput.value || 20;
       upiBtn.href = `upi://pay?pa=anshumanrangarh1@oksbi&pn=Ansh&am=${amount}&cu=INR`;
-      upiBtn.textContent = `Send ₹${amount} 💸`;
+      upiBtn.textContent = `Send ₹${amount} for Monster 💸`;
     });
 
-    // When someone clicks pay button, update the bar (mock donation tracking)
     upiBtn.addEventListener("click", () => {
       const amount = parseInt(amountInput.value) || 20;
-      donated += amount;
-      if (donated > goal) donated = goal; // cap at goal
-      const percent = (donated / goal) * 100;
-      progressBar.style.width = percent + "%";
-      progressText.textContent = `₹${donated} / ₹${goal} goal`;
+      totalDonations += amount;
+      updateProgress();
     });
 
     function copyUPI() {
       navigator.clipboard.writeText("anshumanrangarh1@oksbi");
       alert("UPI ID copied: anshumanrangarh1@oksbi");
     }
+
+    // Initialize with fake 69 donation
+    updateProgress();
   </script>
 </body>
 </html>
